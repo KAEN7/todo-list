@@ -11,14 +11,17 @@ const TodoListBLock = styled.div`
 `;
 
 function TodoList() {
-  const state = useTodoState();
+  const todos = useTodoState();
   return (
     <TodoListBLock>
-      <TodoItem text="프로젝트샘플" done={true} />
-      <TodoItem text="프로젝트샘플" done={true} />
-      <TodoItem text="프로젝트샘플" done={false} />
-      <TodoItem text="프로젝트샘플" done={true} />
-      <TodoItem text="프로젝트샘플" done={false} />
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          id={todo.id}
+          text={todo.text}
+          done={todo.done}
+        ></TodoItem>
+      ))}
     </TodoListBLock>
   );
 }
