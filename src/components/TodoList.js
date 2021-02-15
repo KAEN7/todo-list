@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TodoItem from "./TodoItem";
+import { useTodoState } from "../TodoContext";
 
 const TodoListBLock = styled.div`
   flex: 1;
@@ -10,6 +11,7 @@ const TodoListBLock = styled.div`
 `;
 
 function TodoList() {
+  const state = useTodoState();
   return (
     <TodoListBLock>
       <TodoItem text="프로젝트샘플" done={true} />
