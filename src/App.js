@@ -1,6 +1,7 @@
 import React from "react";
 // import { createStore } from "redux";
 import styled, { createGlobalStyle } from "styled-components";
+import TodoHeader from "./components/TodoHeader";
 import TodoTable from "./components/TodoTable";
 
 // 스토어 생성
@@ -18,7 +19,9 @@ function App() {
     // <Provider store={store}>
     <>
       <GlobalStyle />
-      <TodoTable>hello</TodoTable>
+      <TodoTable>
+        <TodoHeader />
+      </TodoTable>
     </>
     // </Provider>
   );
