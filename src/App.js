@@ -3,6 +3,7 @@ import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import TodoHeader from "./components/TodoHeader";
 import TodoTable from "./components/TodoTable";
+import TodoForm from "./components/TodoForm";
 
 // 스토어 생성
 // const store = createStore(rootReducer);
@@ -21,6 +22,7 @@ function App() {
       <GlobalStyle />
       <TodoTable>
         <TodoHeader />
+        <TodoForm />
       </TodoTable>
     </>
     // </Provider>
