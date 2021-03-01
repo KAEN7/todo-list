@@ -18,7 +18,7 @@ function App() {
     // <Provider store={store}>
     <>
       <GlobalStyle />
-      <TodoTable />
+      <TodoTable>hello</TodoTable>
     </>
     // </Provider>
   );
