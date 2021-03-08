@@ -4,14 +4,15 @@ import { FiPlus } from "react-icons/fi";
 
 // styled
 const FormBlock = styled.div`
-  background: gray;
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 `;
 
 const Form = styled.form`
   display: flex;
   height: 30px;
+  outline: 1px solid black;
 `;
 
 const CreateInput = styled.input`
