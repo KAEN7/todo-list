@@ -6,7 +6,10 @@ import { FiPlus } from "react-icons/fi";
 const FormBlock = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 60px auto;
 `;
 
 const Form = styled.form`
