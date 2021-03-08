@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { TiDelete } from "react-icons/ti";
+import { GrCheckbox, GrCheckboxSelected } from "react-icons/gr";
 
 const ListBlock = styled.div`
   position: relative;
@@ -7,11 +9,18 @@ const ListBlock = styled.div`
   min-height: 80px;
   max-height: 140px;
   margin-top: 15px;
-  background: black;
+  outline: 0.7px solid gray;
 `;
 
 function TodoList({ children }) {
-  return <ListBlock>test {children}</ListBlock>;
+  return (
+    <ListBlock>
+      <div>{children}</div>
+      <GrCheckbox />
+      <GrCheckboxSelected />
+      <TiDelete />
+    </ListBlock>
+  );
 }
 
 export default TodoList;

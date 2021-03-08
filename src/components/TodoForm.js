@@ -9,7 +9,7 @@ const FormBlock = styled.div`
   position: fixed;
   left: 0;
   right: 0;
-  margin: 60px auto;
+  margin: 65px auto;
 `;
 
 const Form = styled.form`

@@ -14,33 +14,19 @@ const BoxBlock = styled.div`
 function TodoBox() {
   return (
     <BoxBlock>
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
-      <TodoList />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
+      <TodoList children="TEST" />
     </BoxBlock>
   );
 }
