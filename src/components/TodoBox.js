@@ -8,23 +8,14 @@ const BoxBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 120px;
+  padding-bottom: 30px;
+  position: relative;
 `;
 
 function TodoBox() {
   return (
     <BoxBlock>
-      <TodoList children="TEST" />
-      <TodoList children="TEST" />
-      <TodoList children="TEST" />
-      <TodoList children="TEST" />
-      <TodoList children="TEST" />
-      <TodoList children="TEST" />
-      <TodoList children="TEST" />
-      <TodoList children="TEST" />
-      <TodoList children="TEST" />
-      <TodoList children="TEST" />
-      <TodoList children="TEST" />
       <TodoList children="TEST" />
       <TodoList children="TEST" />
     </BoxBlock>
