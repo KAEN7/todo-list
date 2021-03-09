@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { RiDeleteBack2Fill } from "react-icons/ri";
-import { GrCheckbox, GrCheckboxSelected } from "react-icons/gr";
+import { GrCheckbox, GrCheckboxSelected, GrWifiNone } from "react-icons/gr";
 
 const ListBlock = styled.div`
   display: flex;
@@ -34,7 +34,6 @@ const ListBlock = styled.div`
       transform: translateX(100%);
     }
     .checkbox {
-      display: flex;
       transform: translateX(100%);
     }
     .delete {
@@ -51,11 +50,18 @@ const ListBlock = styled.div`
 `;
 
 function TodoList({ children }) {
+  const [checking, setChecking] = useState("flex");
+
+  const onCheck = (e) => {
+    const style = e.target.style;
+    console.log(style.display, checking);
+  };
+
   return (
     <ListBlock>
       <div className="todo">{children}</div>
       <div className="btnGroup">
-        <GrCheckbox className="checkbox" />
+        <GrCheckbox className="checkbox" onClick={onCheck} />
         <GrCheckboxSelected className="check" />
         <RiDeleteBack2Fill className="delete" />
       </div>
