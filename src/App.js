@@ -1,10 +1,6 @@
 import React from "react";
 // import { createStore } from "redux";
 import styled, { createGlobalStyle } from "styled-components";
-import TodoHeader from "./components/TodoHeader";
-import TodoTable from "./components/TodoTable";
-import TodoForm from "./components/TodoForm";
-import TodoBox from "./components/TodoBox";
 
 // 스토어 생성
 // const store = createStore(rootReducer);
@@ -18,16 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    // <Provider store={store}>
-    <>
-      <GlobalStyle />
-      <TodoTable>
-        <TodoHeader />
-        <TodoForm />
-        <TodoBox />
-      </TodoTable>
-    </>
-    // </Provider>
+    
   );
 }
 
