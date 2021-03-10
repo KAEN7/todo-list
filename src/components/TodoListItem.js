@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
+const LiSylte = styled.li`
+  &:hover {
+    font-weight: bold;
+  }
+`;
 
 function TodoListItem({ key, todo }) {
   // 할 일 완료 상태를 관리하기 위해 useState 사용
@@ -11,14 +18,14 @@ function TodoListItem({ key, todo }) {
 
   const style = {
     // done 값에 따라 testDecoration이 바뀌면서 완료 상태를 눈으로 볼 수 있음
-    textDecocration: done ? "line-throught" : "none",
+    textDecoration: done ? "line-throught" : "none",
   };
 
   return (
     <h2>
-      <li style={style} onClick={onListClick}>
+      <LiSylte style={style} onClick={onListClick}>
         {todo}
-      </li>
+      </LiSylte>
     </h2>
   );
 }
