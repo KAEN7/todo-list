@@ -9,8 +9,24 @@ import TodoList from "./components/TodoList";
 
 // 글로벌 스타일
 const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+  
   body {
-    background: #ced4da;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  input {
+    border: none;
+  }
+
+  main {
+    display: flex;
   }
 `;
 
@@ -45,14 +61,16 @@ function App() {
   }
 
   return (
-    <>
-      <Nav />
-      <TodoList
-        currentCategory={basic.currentCategory}
-        updateTodoList={updateTodoList}
-        currentCategoryTodoList={basic.currentCategoryTodoList}
-      />
-    </>
+    <GlobalStyle>
+      <main>
+        <Nav />
+        <TodoList
+          currentCategory={basic.currentCategory}
+          updateTodoList={updateTodoList}
+          currentCategoryTodoList={basic.currentCategoryTodoList}
+        />
+      </main>
+    </GlobalStyle>
   );
 }
 
