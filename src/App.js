@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // import { createStore } from "redux";
 import styled, { createGlobalStyle } from "styled-components";
+import Nav from "./components/Nav";
 import TodoList from "./components/TodoList";
 
 // 스토어 생성
@@ -14,11 +15,43 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [basic, setBasic] = useState({
+    id: 0, // list당 매겨줄 id
+    todoList: [], // 이것은 투두리스트구여
+    currentCategoryTodoList: [], // 현재 투두리스트 카테고리
+    currentCategory: "분류하지 않은 할일", // 현재 카테고리
+    completedTodo: [], // 완료한 일
+  });
+
+  // 새로만들 투두리스트
+  function updateTodoList(text) {
+    // 구조분해
+    const { id, todoList, currentCategory, currentCategoryTodoList } = basic;
+
+    // 새로운 todo
+    const newTodo = {
+      id: id,
+      text: text,
+      category: currentCategory,
+      isComplete: false,
+    };
+
+    setBasic({
+      // concat: 괄호안의 문자열을 전부 결합하여 반환해주는 함수
+      todoList: todoList.concat(newTodo), // 새로 만들어진 Todo를 추가
+      currentCategoryTodoList: currentCategoryTodoList.concat(newTodo), // 얘도 새로만들어진걸 추가
+      id: id + 1,
+    });
+  }
+
   return (
     <>
-      <h1>TodoList Sample</h1>
-      <TodoList todos={["리액트 연습", "상태관리", "투두 예제"]} />{" "}
-      {/* props로 todos를 보내줌 */}
+      <Nav />
+      <TodoList
+        currentCategory={basic.currentCategory}
+        updateTodoList={updateTodoList}
+        currentCategoryTodoList={basic.currentCategoryTodoList}
+      />
     </>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const LiSylte = styled.li`
+  // hover 될때 폰트가 굵어지도록 처리
   &:hover {
     font-weight: bold;
   }
