@@ -1,35 +1,91 @@
-import React, { useState } from "react";
+import React from 'react';
+import Input from './Input';
 
-function CategoryEntry({ categoryNew, viewCurrentCategoryTodoList }) {
-  const [category, setCategory] = useState({
-    category: "",
-    isEditable: true,
-  });
+class CategoryEntry extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: '',
+      isEditable: false,
+      isHover: false,
+    };
 
-  const handleChange = (e) => {
-    console.log(e.target.value);
-  };
+    this.handleClick = this.handleClick.bind(this);
+    this.handleOnMouseEnter = this.handleOnMouseEnter.bind(this);
+    this.handleOnMouseLeave = this.handleOnMouseLeave.bind(this);
+    this.handleOnClickButton = this.handleOnClickButton.bind(this);
+    this.handleOnDoubleClickText = this.handleOnDoubleClickText.bind(this);
+    this.changeEditableState = this.changeEditableState.bind(this);
+  }
 
-  const handleDoubleClick = (e) => {
-    setCategory({ isEditable: false });
-  };
+  handleClick() {
+    this.props.viewCurrentCategoryTodoList(this.props.category);
+    this.props.setSearchingToFalse();
+  }
 
-  const handleClick = (e) => {
-    viewCurrentCategoryTodoList(e.target.value);
-  };
+  handleOnMouseEnter() {
+    this.setState({
+      isHover: true,
+    });
+  }
 
-  return (
-    <div className="category-entry">
-      <label></label>
-      <input
-        type="text"
-        value={categoryNew}
-        onChange={handleChange}
-        onDoubleClick={handleDoubleClick}
-        onClick={handleClick}
-      />
-    </div>
-  );
+  handleOnMouseLeave() {
+    this.setState({
+      isHover: false,
+    });
+  }
+
+  handleOnClickButton() {
+    this.props.removeCategory(this.props.category);
+  }
+
+  handleOnDoubleClickText() {
+    this.setState({
+      text: this.props.category.name,
+      isEditable: true,
+    });
+  }
+
+  changeEditableState() {
+    this.setState({
+      isEditable: false,
+    });
+  }
+
+  render() {
+    return (
+      <div
+        className="category-entry"
+        onMouseEnter={this.handleOnMouseEnter}
+        onMouseLeave={this.handleOnMouseLeave}
+      >
+        {this.state.isEditable ? (
+          <Input
+            text={this.state.text}
+            calledByCategory="category"
+            updateCategoryName={this.props.updateCategoryName}
+            category={this.props.category}
+            changeEditableState={this.changeEditableState}
+          />
+        ) : (
+          <p
+            className="category-text"
+            onClick={this.handleClick}
+            onDoubleClick={this.handleOnDoubleClickText}
+          >
+            {this.props.category.name}
+          </p>
+        )}
+        {this.state.isHover && this.props.category.name !== '미분류' ? (
+          <button className="btn delete" onClick={this.handleOnClickButton}>
+            ×
+          </button>
+        ) : (
+          ''
+        )}
+      </div>
+    );
+  }
 }
 
 export default CategoryEntry;

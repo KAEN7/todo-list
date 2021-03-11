@@ -1,12 +1,19 @@
-import React from "react";
-import Category from "./Category";
+import React from 'react';
+import Category from './Category';
+import Search from './Search';
 
-function Nav({ viewCurrentCategoryTodoList }) {
+const Nav = props => {
   return (
     <nav>
-      <Category viewCurrentCategoryTodoList={viewCurrentCategoryTodoList} />
+      <Search searchTodo={props.searchTodo} />
+      <Category
+        viewCurrentCategoryTodoList={props.viewCurrentCategoryTodoList}
+        removeCategory={props.removeCategory}
+        updateCategoryName={props.updateCategoryName}
+        setSearchingToFalse={props.setSearchingToFalse}
+      />
     </nav>
   );
-}
+};
 
 export default Nav;

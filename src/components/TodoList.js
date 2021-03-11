@@ -1,52 +1,84 @@
-import React, { useState } from "react";
-import TodoListEntry from "./TodoListEntry";
+import React from 'react';
+import CompletedList from './CompletedList';
+import TodoListEntry from './TodoListEntry';
 
-function TodoList({
-  updateTodoList,
-  currentCategory,
-  currentCategoryTodoList,
-}) {
-  const [text, setText] = useState("");
+class TodoList extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const handleChange = (e) => {
-    setText(e.target.value);
-  };
+    this.state = {
+      text: '',
+    };
 
-  const handleEnterEvent = (e) => {
-    if (e.key === "Enter" && text) {
-      updateTodoList(text);
-      setText("");
+    this.textInput = React.createRef();
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleEnterEvent = this.handleEnterEvent.bind(this);
+    this.handleBlurEvent = this.handleBlurEvent.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ text: e.target.value });
+  }
+
+  updateTodoList() {
+    this.props.updateTodoList(this.state.text);
+    this.setState({ text: '' });
+  }
+
+  handleEnterEvent(e) {
+    if (e.key === 'Enter' && this.state.text) {
+      this.updateTodoList();
     }
-  };
+  }
 
-  const handleBlurEvent = (e) => {
-    if (text) {
-      updateTodoList(text);
-      setText("");
+  handleBlurEvent() {
+    if (this.state.text) {
+      this.updateTodoList();
     }
-  };
+  }
 
-  return (
-    <section>
-      <div id="category-title">
-        <h2>{currentCategory}</h2>
-      </div>
-      {currentCategoryTodoList.map((todo) => (
-        <TodoListEntry key={todo.id} todo={todo} />
-      ))}
-      <div className="default-input">
-        <label></label>
-        <input
-          type="text"
-          value={text}
-          onChange={handleChange}
-          onKeyPress={handleEnterEvent}
-          onBlur={handleBlurEvent}
-          placeholder="오늘의 할 일"
-        />
-      </div>
-    </section>
-  );
+  render() {
+    return (
+      <section>
+        <div id="todo-list-nav">
+          <h2>{this.props.currentCategory.name}</h2>
+          <button className="btn" onClick={() => this.textInput.current.focus()}>
+            일과 추가
+          </button>
+        </div>
+        {this.props.completedTodoList.length > 0 ? (
+          <CompletedList
+            completedTodoList={this.props.completedTodoList}
+            toggleTodoComplete={this.props.toggleTodoComplete}
+            removeTodo={this.props.removeTodo}
+          />
+        ) : (
+          ''
+        )}
+        {this.props.currentCategoryTodoList.map(todo => (
+          <TodoListEntry
+            key={todo.id}
+            todo={todo}
+            removeTodo={this.props.removeTodo}
+            toggleTodoComplete={this.props.toggleTodoComplete}
+            updateTodoText={this.props.updateTodoText}
+          />
+        ))}
+        <div id="todo-default-form">
+          <input
+            ref={this.textInput}
+            type="text"
+            value={this.state.text}
+            onChange={this.handleChange}
+            onKeyPress={this.handleEnterEvent}
+            onBlur={this.handleBlurEvent}
+            placeholder="오늘의 일과"
+          />
+        </div>
+      </section>
+    );
+  }
 }
 
 export default TodoList;
