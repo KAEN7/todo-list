@@ -24,10 +24,6 @@ const GlobalStyle = createGlobalStyle`
   input {
     border: none;
   }
-
-  main {
-    display: flex;
-  }
 `;
 
 function App() {
@@ -60,17 +56,25 @@ function App() {
     });
   }
 
+  function viewCurrentCategoryTodoList(category) {
+    setBasic({
+      currentCategory: category,
+      currentCategoryTodoList: basic.todoList.filter(
+        (todo) => todo.category === category
+      ),
+    });
+  }
+
   return (
-    <GlobalStyle>
-      <main>
-        <Nav />
-        <TodoList
-          currentCategory={basic.currentCategory}
-          updateTodoList={updateTodoList}
-          currentCategoryTodoList={basic.currentCategoryTodoList}
-        />
-      </main>
-    </GlobalStyle>
+    <main>
+      <GlobalStyle />
+      <Nav viewCurrentCategoryTodoList={viewCurrentCategoryTodoList} />
+      <TodoList
+        currentCategory={basic.currentCategory}
+        updateTodoList={updateTodoList}
+        currentCategoryTodoList={basic.currentCategoryTodoList}
+      />
+    </main>
   );
 }
 

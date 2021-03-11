@@ -1,11 +1,11 @@
 import React from "react";
 import Category from "./Category";
 
-function Nav() {
+function Nav({ viewCurrentCategoryTodoList }) {
   return (
-    <>
-      <Category />
-    </>
+    <nav>
+      <Category viewCurrentCategoryTodoList={viewCurrentCategoryTodoList} />
+    </nav>
   );
 }
 

@@ -8,7 +8,7 @@ function TodoListEntry({ todo }) {
   };
 
   return (
-    <div className="todoList-input">
+    <div className="todoList-entry">
       <label></label>
       <input type="text" value={todo.text} onChange={handleChange} />
     </div>
