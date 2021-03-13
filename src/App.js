@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     background: #e9ecef;
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 88px;
   }
 `;
 
