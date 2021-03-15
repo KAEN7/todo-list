@@ -59,7 +59,7 @@ function App() {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      text: "test",
+      text: "우측에 삭제버튼을 눌러보세요!",
       done: false,
     },
   ]);
@@ -82,6 +82,15 @@ function App() {
     [todos]
   );
 
+  // 해당 todo를 삭제할때 사용되는 함수
+  const onRemove = useCallback(
+    (id) => {
+      setTodos(todos.filter((todo) => todo.id !== id));
+      // 삭제할 todo의 id를 파라미터로 받아와서 그 id가 아닌 다른 모든 id를 filter로 거른 후 setTodos시킴
+    },
+    [todos]
+  );
+
   return (
     <>
       <GlobalStyle />
@@ -92,7 +101,7 @@ function App() {
       </Nav>
       <Main>
         <Header />
-        <List todos={todos} />
+        <List todos={todos} onRemove={onRemove} />
         <Insert onInsert={onInsert} />
       </Main>
     </>

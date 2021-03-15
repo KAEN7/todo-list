@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import { TiDeleteOutline } from "react-icons/ti";
 
 // keyframes
 const slideup = keyframes`
@@ -30,12 +31,25 @@ const ListItemBlock = styled.div`
   }
 `;
 
-function ListItem({ key, id, text, done }) {
+const Remove = styled.div`
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 27px;
+
+  &:hover {
+    color: #ffc078;
+  }
+`;
+
+function ListItem({ id, text, done, onRemove }) {
   return (
     <ListItemBlock>
       <div className="doneBox"></div>
       <div done={done}>{text}</div>
-      <div>삭제</div>
+      <Remove onClick={() => onRemove(id)}>
+        <TiDeleteOutline />
+      </Remove>
     </ListItemBlock>
   );
 }
@@ -43,3 +57,4 @@ function ListItem({ key, id, text, done }) {
 export default ListItem;
 
 // List컴포넌트에서 받은 props들을 제 위치에 넣어주는 컴포넌트
+// 삭제버튼에는 삭제시킬 todo의 id를 부모에 있는 함수에 파라미터로 넣어줌

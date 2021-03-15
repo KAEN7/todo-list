@@ -22,10 +22,11 @@ const ListBlock = styled.div`
 // todolist 스타일
 const TodolistBlock = styled.div`
   margin: 2;
+  margin-top: 10px;
   padding: 0;
 `;
 
-function List({ todos }) {
+function List({ todos, onRemove }) {
   return (
     <ListBlock>
       <div>완료한 일 3개</div>
@@ -36,6 +37,7 @@ function List({ todos }) {
             id={todo.id}
             text={todo.text}
             done={todo.done}
+            onRemove={onRemove}
           />
         ))}
       </TodolistBlock>
