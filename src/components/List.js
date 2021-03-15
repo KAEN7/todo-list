@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
+import ListItem from "./ListItem";
 
+// list 전체 스타일
 const ListBlock = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,58 +19,13 @@ const ListBlock = styled.div`
   }
 `;
 
+// todolist 스타일
 const TodolistBlock = styled.div`
   margin: 2;
   padding: 0;
 `;
 
-const ListItemBlock = styled.div`
-  display: flex;
-  justify-content: space-between;
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 30px;
-    margin-top: 5px;
-  }
-`;
-
-function ListItem({ key, id, text, done }) {
-  return (
-    <ListItemBlock>
-      <div>O</div>
-      <div done={done}>{text}</div>
-      <div>삭제</div>
-    </ListItemBlock>
-  );
-}
-
-function List() {
-  const [todos, setTodos] = useState([
-    {
-      key: 0,
-      id: 0,
-      text: "",
-      done: false,
-    },
-  ]);
-
-  // 구조분해
-  const { key, id, text, done } = todos;
-
-  // FUNCTION
-  const onChange = (e) => {
-    const newTodo = {
-      key: key + 1,
-      id: id + 1,
-      text: e.target.value,
-      done: false,
-    };
-    const newArray = todos.concat(newTodo);
-    setTodos = newArray;
-  };
-
+function List({ todos }) {
   return (
     <ListBlock>
       <div>완료한 일 3개</div>
@@ -82,9 +39,10 @@ function List() {
           />
         ))}
       </TodolistBlock>
-      <input placeholder="할 일을 입력해주세요" onChange={onChange} />
     </ListBlock>
   );
 }
 
 export default List;
+
+// todos 배열에 들어있는 값들을 map으로 뿌려서 ListItem 컴포넌트에 전달함으로써 각각의 값들을 위치에 넣어줌
