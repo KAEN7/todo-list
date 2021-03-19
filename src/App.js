@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: center;
     margin-top: 88px;
+    padding: 20px;
   }
 
   input {
@@ -49,7 +50,8 @@ const Main = styled.div`
   margin: 5px;
   box-shadow: 0.7px 0.7px #ced4da;
   width: 800px;
-  height: 700px;
+  min-height: 700px;
+  height: 100%;
   box-sizing: border-box;
   padding: 10px;
 `;
@@ -59,7 +61,7 @@ function App() {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      text: "우측에 삭제버튼을 눌러보세요!",
+      text: "우측에 숨어있는 삭제버튼을 눌러보세요!",
       done: false,
     },
   ]);
@@ -91,6 +93,24 @@ function App() {
     [todos]
   );
 
+  // 해당 todo가 완료된 상태면 다른 배열로 옮겨주는 함수
+  const onDone = useCallback(
+    (id, done) => {
+      if (done === false) {
+        setTodos(
+          todos.map((todo) =>
+            todo.id === id ? { ...todo, done: !todo.done } : todo
+          )
+        );
+      } else {
+        setTodos(todos.filter((todo) => todo.done !== done));
+      }
+
+      console.log(id, done);
+    },
+    [todos]
+  );
+
   return (
     <>
       <GlobalStyle />
@@ -101,7 +121,7 @@ function App() {
       </Nav>
       <Main>
         <Header />
-        <List todos={todos} onRemove={onRemove} />
+        <List todos={todos} onRemove={onRemove} onDone={onDone} />
         <Insert onInsert={onInsert} />
       </Main>
     </>

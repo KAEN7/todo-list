@@ -26,7 +26,7 @@ const TodolistBlock = styled.div`
   padding: 0;
 `;
 
-function List({ todos, onRemove }) {
+function List({ todos, onRemove, onDone }) {
   return (
     <ListBlock>
       <div>완료한 일 3개</div>
@@ -38,6 +38,7 @@ function List({ todos, onRemove }) {
             text={todo.text}
             done={todo.done}
             onRemove={onRemove}
+            onDone={onDone}
           />
         ))}
       </TodolistBlock>

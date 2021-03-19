@@ -17,6 +17,11 @@ const BtnBlock = styled.button`
   border: 1px solid #ffc078;
   border-radius: 6px;
   background: #ffc078;
+  cursor: pointer;
+  &:active {
+    border: none;
+    outline: none;
+  }
 `;
 
 // input을 통해 todo를 추가하는 컴포넌트

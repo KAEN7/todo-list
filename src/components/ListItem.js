@@ -24,6 +24,7 @@ const ListItemBlock = styled.div`
     border-radius: 100%;
     width: 15px;
     height: 15px;
+    cursor: pointer;
     &:hover {
       animation: ${slideup} 1.7s infinite;
       background: #ffc078;
@@ -36,18 +37,23 @@ const Remove = styled.div`
   display: flex;
   align-items: center;
   font-size: 27px;
+  cursor: pointer;
 
   &:hover {
     color: #ffc078;
   }
 `;
 
-function ListItem({ id, text, done, onRemove }) {
+function ListItem({ id, text, done, onRemove, onDone }) {
   return (
     <ListItemBlock>
-      <div className="doneBox"></div>
-      <div done={done}>{text}</div>
-      <Remove onClick={() => onRemove(id)}>
+      <div
+        className="doneBox"
+        done={done}
+        onClick={() => onDone(id, done)}
+      ></div>
+      <div>{text}</div>
+      <Remove done={done} onClick={() => onRemove(id)}>
         <TiDeleteOutline />
       </Remove>
     </ListItemBlock>
