@@ -22,8 +22,11 @@ const ListItemBlock = styled.div`
   .doneBox {
     border: 3px solid #ffc078;
     border-radius: 100%;
+    min-width: 15px;
+    min-height: 15px;
     width: 15px;
     height: 15px;
+    margin: 7px;
     cursor: pointer;
     &:hover {
       animation: ${slideup} 1.7s infinite;
