@@ -6,3 +6,5 @@
 
 - React Hooks
 - Styled Components
+
+![pc화면](\src\img\pc화면.PNG)
