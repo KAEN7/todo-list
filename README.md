@@ -7,4 +7,4 @@
 - React Hooks
 - Styled Components
 
-![pc화면](\src\img\pc화면.PNG)
+![pc화면](https://user-images.githubusercontent.com/68473415/115360898-05bbf780-a1fb-11eb-9b56-b3f5d2452f7e.PNG)
