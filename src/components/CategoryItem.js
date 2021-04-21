@@ -7,6 +7,7 @@ const ItemBlock = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 15px;
+  font-size: 0.9rem;
 `;
 
 const Remove = styled.div`

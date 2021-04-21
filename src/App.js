@@ -27,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
     border: none;
   }
+  
+  button:focus {
+    outline: 0;
+  }
 `;
 
 // 네비게이션 스타일

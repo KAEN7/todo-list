@@ -57,7 +57,6 @@ function Category({ categorys, onCateInsert, onRemoveCategory }) {
         onChange={onChange}
         value={value}
         placeholder="카테고리를 입력해주세오"
-        autoFocus
       />
     </FormBlock>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { TiDeleteOutline } from "react-icons/ti";
 
@@ -48,6 +48,10 @@ const Remove = styled.div`
 `;
 
 function ListItem({ id, text, done, onRemove, onDone }) {
+  const textClick = () => {
+    console.log("click!", id);
+  };
+
   return (
     <ListItemBlock>
       <div
@@ -55,7 +59,7 @@ function ListItem({ id, text, done, onRemove, onDone }) {
         done={done}
         onClick={() => onDone(id, done)}
       ></div>
-      <div>{text}</div>
+      <div onClick={textClick}>{text}</div>
       <Remove done={done} onClick={() => onRemove(id)}>
         <TiDeleteOutline />
       </Remove>
