@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef } from "react";
 import styled, { createGlobalStyle } from "styled-components";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/Login";
 import Search from "./components/Search";
 import Category from "./components/Category";
@@ -70,21 +71,22 @@ function App() {
     },
     {
       id: 2,
-      text: '좌측 체크버튼을 두번 눌러 완료해보세요'
-    }
+      text: "좌측 체크버튼을 두번 눌러 완료해보세요",
+      done: false,
+    },
   ]);
 
   // category의 id와 텍스트 상태관리
   const [categorys, setCategorys] = useState([
     {
       id: 1,
-      text: '기본 카테고리'
+      text: "기본 카테고리",
     },
     {
       id: 2,
-      text: 'TESTING'
+      text: "TESTING",
     },
-  ])
+  ]);
 
   // 기본 id값을 3으로 줌 나중에 test todo 지우면서 같이 지울거임
   const nextId = useRef(3);
@@ -105,16 +107,14 @@ function App() {
     [todos]
   );
 
-  const onCateInsert = useCallback(
-    text => {
-      const cate = {
-        id: nextCategoryId.current,
-        text,
-      };
-      setCategorys(categorys.concat(cate));
-      nextCategoryId.current += 1;
-    }
-  )
+  const onCateInsert = useCallback((text) => {
+    const cate = {
+      id: nextCategoryId.current,
+      text,
+    };
+    setCategorys(categorys.concat(cate));
+    nextCategoryId.current += 1;
+  });
 
   // 해당 todo를 삭제할때 사용되는 함수
   const onRemove = useCallback(
@@ -126,8 +126,8 @@ function App() {
   );
 
   const onRemoveCategory = useCallback(
-    id => {
-      setCategorys(categorys.filter(item => item.id !== id));
+    (id) => {
+      setCategorys(categorys.filter((item) => item.id !== id));
     },
     [categorys]
   );
@@ -149,19 +149,30 @@ function App() {
   );
 
   return (
-    <>
-      <GlobalStyle />
-      <Nav>
-        <Login />
-        <Search />
-        <Category categorys={categorys} onRemoveCategory={onRemoveCategory} onCateInsert={onCateInsert} />
-      </Nav>
-      <Main>
-        <Header />
-        <List todos={todos} onRemove={onRemove} onDone={onDone} />
-        <Insert onInsert={onInsert} />
-      </Main>
-    </>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <GlobalStyle />
+          <Nav>
+            <Link to="/login">Login</Link>
+            <Search />
+            <Category
+              categorys={categorys}
+              onRemoveCategory={onRemoveCategory}
+              onCateInsert={onCateInsert}
+            />
+          </Nav>
+          <Main>
+            <Header />
+            <List todos={todos} onRemove={onRemove} onDone={onDone} />
+            <Insert onInsert={onInsert} />
+          </Main>
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
