@@ -41,6 +41,9 @@ yarn start
 - Login  
   로그인한 사용자별로 투두리스트 목록 저장
 
+  - localstorage
+  - server
+
 - Search  
   투두리스트에 해당하는 단어가 있는지 검색해주는 기능
 
