@@ -13,9 +13,8 @@ app.use("/todo", todo);
 
 // 조회
 app.get("/", (req, res) => {
-  res.status(200).send("tester todolist");
   // 파일 받아와서 응답으로 보내기
-  res.sendFile(__dirname + "/src/App.js");
+  res.status(200).sendFile(__dirname + "/src/App.js");
 });
 
 // 에러

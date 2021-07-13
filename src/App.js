@@ -62,6 +62,7 @@ const Main = styled.div`
 `;
 
 function App() {
+  fetch("/test");
   // todos의 id와 텍스트, 완료여부를 상태관리
   const [todos, setTodos] = useState([
     {
